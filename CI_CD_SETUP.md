@@ -1,6 +1,6 @@
 # 🚀 Cozy Cat Kitchen CI/CD Workflow
 
-This document outlines the complete CI/CD pipeline for the Cozy Cat Kitchen eCommerce store, ensuring smooth deployments to both staging and production environments.
+This document outlines the complete CI/CD pipeline for the Cozy Cat Kitchen eCommerce store, ensuring smooth deployments to production using Render's native GitHub integration.
 
 ## 🌟 Branch Strategy
 
@@ -29,35 +29,40 @@ graph LR
   - 🏗️ Build process
   - 🧪 Tests (if configured)
 
-### 2. Staging Deployment (`.github/workflows/deploy-staging.yml`)
-- **Trigger**: Push to `staging` branch
-- **Environment**: Staging (preview)
-- **Requires**: `RENDER_DEPLOY_HOOK_STAGING` secret
-- **Process**:
-  1. Code is merged to `staging`
-  2. GitHub Actions triggers deployment
-  3. Render receives webhook and deploys
-
-### 3. Production Deployment (`.github/workflows/deploy-prod.yml`)
+### 2. Production Deployment (via Render)
 - **Trigger**: Push to `main` branch
-- **Environment**: Production
-- **Requires**: `RENDER_DEPLOY_HOOK_PROD` secret
+- **Configuration**: `render.yaml` at project root
 - **Process**:
   1. Code is merged to `main`
-  2. GitHub Actions triggers deployment
-  3. Render receives webhook and deploys to production
+  2. Render automatically detects changes
+  3. Builds and deploys the application
+  4. Runs health checks
 
-## 🔑 Required GitHub Secrets
+### 3. Staging Environment (Optional)
+For staging, you can either:
+- Use a separate Render service with a different branch
+- Or use feature branch previews in Render
 
-| Secret Name | Description | How to Get |
-|-------------|-------------|------------|
-| `RENDER_DEPLOY_HOOK_STAGING` | Webhook for staging deployments | Render Dashboard > Staging Service > Manual Deploy |
-| `RENDER_DEPLOY_HOOK_PROD` | Webhook for production deployments | Render Dashboard > Production Service > Manual Deploy |
+## 🔧 Render Deployment Setup
 
-### Adding Secrets:
-1. Go to GitHub Repository > Settings > Secrets and variables > Actions
-2. Click "New repository secret"
-3. Add each secret with its corresponding value
+### 1. Connect Your Repository to Render
+1. Sign in to your [Render Dashboard](https://dashboard.render.com/)
+2. Click "New" and select "Web Service"
+3. Connect your GitHub repository
+4. Select the repository: `aditya01889/cozystore`
+5. Configure the service:
+   - Name: `cozy-cat-kitchen`
+   - Region: Choose the one closest to your users
+   - Branch: `main`
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm start`
+6. Click "Create Web Service"
+
+### 2. Environment Variables
+Add these in the Render dashboard under your service > Environment:
+- `NODE_ENV=production`
+- `NPM_CONFIG_PRODUCTION=false` (to install devDependencies)
+- Any other environment variables your app needs
 
 ## 🛡️ Branch Protection Rules
 

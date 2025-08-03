@@ -1,0 +1,32 @@
+# Render Configuration for Cozy Cat Kitchen
+# Single service for the Evershop monorepo (frontend + backend combined)
+services:
+  - type: web
+    name: cozy-cat-kitchen
+    env: node
+    region: oregon  # or your preferred region
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add other required environment variables here
+      # - key: DATABASE_URL
+      #   fromDatabase:
+      #     name: mydb
+      #     property: connectionString
+    autoDeploy: true  # Auto-deploy on push to the connected branch
+    branch: main      # Deploy from main branch
+    healthCheckPath: /  # Basic health check endpoint
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+      - key: NPM_CONFIG_PRODUCTION
+        value: false  # Ensure devDependencies are installed
+    # Uncomment and configure these if you need a database
+    # database:
+    #   name: mydb
+    #   databaseName: mydb
+    #   user: myuser
+    #   plan: free  # or paid plan for production
