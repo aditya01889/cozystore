@@ -148,7 +148,10 @@ if ($MyInvocation.InvocationName -ne '.') {
     Write-Host "`n❗ To use these functions in your current session, run:" -ForegroundColor Yellow
     Write-Host "  .\$($MyInvocation.MyCommand.Name)" -ForegroundColor White
     Write-Host "`n  Or add to your PowerShell profile to make them always available:" -ForegroundColor Yellow
-    Write-Host "  Add-Content -Path `$PROFILE -Value "". '$(Get-Location)\$($MyInvocation.MyCommand.Name)'`" -ForegroundColor White
+    $scriptPath = "$(Get-Location)\$($MyInvocation.MyCommand.Name)"
+    Write-Host "  Notepad `$PROFILE" -ForegroundColor White
+    Write-Host "  # Add this line:"
+    Write-Host "  . '$($scriptPath.Replace('''',''''''))'" -ForegroundColor White
 } else {
     Write-Host "🌟 Cozy Cat Kitchen Git Helpers loaded!" -ForegroundColor Green
     Write-Host "Type 'ghelp' to see available commands." -ForegroundColor Green
