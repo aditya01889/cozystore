@@ -1,0 +1,24 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Trigger Render Deploy
+      run: |
+        if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_STAGING }}" ]; then
+          echo "No RENDER_DEPLOY_HOOK_STAGING secret found. Please add it in GitHub Secrets."
+          exit 1
+        fi
+        
+        curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_STAGING }}
