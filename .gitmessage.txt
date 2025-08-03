@@ -1,0 +1,41 @@
+# Conventional Commits
+
+# A commit message should describe what changed and why.
+# Follow the Conventional Commits specification: https://www.conventionalcommits.org/
+
+# Types of changes:
+# - build: Changes that affect the build system or external dependencies
+# - chore: Maintenance tasks, dependency updates, etc.
+# - ci: Changes to CI/CD configuration
+# - docs: Documentation only changes
+# - feat: A new feature
+# - fix: A bug fix
+# - perf: A code change that improves performance
+# - refactor: A code change that neither fixes a bug nor adds a feature
+# - revert: Revert a previous commit
+# - style: Changes that do not affect the meaning of the code (white-space, formatting, etc.)
+# - test: Adding missing tests or correcting existing tests
+
+# Example commit message:
+# feat(products): add product filtering by category
+# 
+# Add the ability to filter products by category in the product listing page.
+# This improves the user experience by allowing customers to find products more easily.
+# 
+# Closes #123
+
+# The commit contains the following structural elements, to communicate intent to the
+# consumers of your library:
+# 1. type: A noun, feat, fix, etc., followed by the OPTIONAL scope in parentheses, and a REQUIRED terminal colon and space.
+# 2. subject: A description of the change in the imperative mood.
+# 3. body: OPTIONAL, a longer description of the change.
+# 4. footer: OPTIONAL, a footer contains metadata like breaking changes and issue references.
+
+# Remember to:
+# - Use the imperative mood ("add" not "added" or "adds")
+# - Don't capitalize the first letter
+# - No dot (.) at the end
+# - Keep the subject line under 50 characters
+# - Wrap the body at 72 characters
+# - Use the body to explain what and why vs. how
+# - Reference issues and pull requests liberally after the body
