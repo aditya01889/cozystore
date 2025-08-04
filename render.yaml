@@ -3,7 +3,7 @@
 services:
   - type: web
     name: cozy-cat-staging
-    dockerfile: Dockerfile
+    env: docker
     plan: free
     region: oregon
     branch: staging
