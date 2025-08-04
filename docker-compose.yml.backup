@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  app:
+    image: evershop/evershop:latest
+    container_name: cozy-cat-app
+    restart: always
+    env_file: .env.local
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_USER: ${DB_USER}
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - database
+    networks:
+      - myevershop
+    ports:
+      - 3000:3000
+
+  database:
+    image: postgres:16
+    container_name: cozy-cat-db
+    restart: unless-stopped
+    env_file: .env.local
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - myevershop
+
+networks:
+  myevershop:
+    name: MyEverShop
+    driver: bridge
+
+volumes:
+  postgres-data:
+    name: cozycat_postgres_data
