@@ -18,7 +18,7 @@ RUN cd packages/evershop && npm install
 COPY . .
 
 # Build the application
-RUN cd packages/evershop && npm run build
+RUN cd packages/evershop && npm run compile
 
 # Production stage
 FROM node:18-alpine
