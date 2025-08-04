@@ -1,12 +1,4 @@
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<p align="center">
-<img width="60" height="68" alt="EverShop Logo" src="https://raw.githubusercontent.com/evershopcommerce/evershop/dev/.github/images/logo-green.png"/>
-</p>
-<p align="center">
-  <h1 align="center">EverShop</h1>
-</p>
-<h4 align="center">
-    <a href="https://evershop.io/docs/development/getting-started/introduction">Documentation</a> |
+# Cozy Cat Kitchen
     <a href="https://demo.evershop.io/">Demo</a>
 </h4>
 
@@ -51,6 +43,42 @@ For the full installation guide, please refer to our [Installation guide](https:
 
 - [Theme development](https://evershop.io/docs/development/theme/theme-overview).
 
+
+## Development Setup
+
+### Git Workflow Helpers
+
+We provide a `git-helpers.sh` script to streamline common Git workflows. Here's how to use it on different platforms:
+
+#### Windows (PowerShell/CMD)
+```powershell
+# Source the script in your current session
+.\git-helpers.ps1
+
+# Or add this to your PowerShell profile to make them always available
+Add-Content -Path $PROFILE -Value "`n. '$(Get-Location)\git-helpers.ps1'"
+```
+
+#### Linux/macOS/Git Bash
+```bash
+# Make the script executable (only needed once)
+chmod +x git-helpers.sh
+
+# Source it in your current session
+source ./git-helpers.sh
+
+# Or add to your shell profile
+# echo "source $(pwd)/git-helpers.sh" >> ~/.bashrc  # or ~/.zshrc
+```
+
+#### Available Commands
+- `gfeature <name>` - Start a new feature branch
+- `gbugfix <desc>` - Start a new bugfix branch
+- `gsync` - Sync current branch with develop
+- `gpush` - Push current branch and set upstream
+- `gpr` - Create a PR for the current branch
+- `gstatus` - Show current branch status
+- `ghelp` - Show help message
 
 ## Demo
 
