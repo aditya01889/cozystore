@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18-alpine as builder
+FROM node:20-alpine as builder
 
 # Set working directory
 WORKDIR /app
@@ -18,10 +18,10 @@ RUN cd packages/evershop && npm install
 COPY . .
 
 # Build the application
-RUN cd packages/evershop && npm run compile
+RUN cd packages/evershop && npm run build
 
 # Production stage
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
